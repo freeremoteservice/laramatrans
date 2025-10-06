@@ -964,14 +964,25 @@ class Action extends CI_Controller
             $count = count($transaction);
 
             if ($count > 0) {
-                // Save IP address
+                // Check if admin is logged in - skip PIN entry
+                if ($this->session->userdata('status') == 'logged_in' && $this->session->userdata('role') == 'Admin') {
+                    // Admin user - go directly to transaction view
+                    $data['footer'] = $this->lang->line('footer');
+                    $data['link'] = $this->lang->line('link');
+                    $data["transaction"] = $transaction;
+                    $data['mainContent'] = 'transaction/view';
+                    $this->load->view('layout/template', $data);
+                    return;
+                }
+
+                // Save IP address for non-admin users
                 $ip_address = $this->getUserIpAddr();
                 if (empty($transaction[0]->ip_address)) {
                     $transaction_data = array('ip_address' => $ip_address);
                     $this->transaction_model->update_transaction($transaction[0]->id, $transaction_data);
                 }
 
-                // Show PIN entry page with landing style
+                // Show PIN entry page with landing style for buyers
                 $data['reference'] = $reference;
                 $data['error_message'] = isset($_GET['error']) ? 'Falsche PIN. Bitte versuchen Sie es erneut.' : null;
                 $data['mainContent'] = 'transaction/tracking_pin_content';
