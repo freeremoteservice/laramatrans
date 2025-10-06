@@ -75,7 +75,8 @@ document.getElementById('track-btn').addEventListener('click', function() {
         return;
     }
     
-    // goes here
+    // Redirect to tracking page
+    window.location.href = base_url + 'track/' + trackingNumber;
 });
 
 // Enter key support for tracking input

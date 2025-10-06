@@ -517,98 +517,56 @@ class Action extends CI_Controller
     public function react_transaction($transaction_reference)
     {
         if ($transaction_reference == null or strlen($transaction_reference) != 8) {
+            redirect(base_url());
             return false;
         }
+        
         $this->load->model('transaction_model');
         $currentTransaction = $this->transaction_model->get_transaction($transaction_reference);
 
-        if (count($currentTransaction) == 1) {
-            $currentPIN = $currentTransaction[0]->pin;
-        } else {
+        if (count($currentTransaction) != 1) {
             redirect(site_url('track/' . $transaction_reference));
+            return false;
         }
+
+        $currentPIN = $currentTransaction[0]->pin;
         $pin = $this->input->post('pin');
         $response = $this->input->post('response');
-        if ($this->session->userdata('status') == 'logged_in') {
+
+        // Verify PIN first
+        if (!isset($pin) || $currentPIN != $pin) {
+            redirect(site_url('track/' . $transaction_reference . '?error=1'));
+            return false;
+        }
+
+        // PIN is correct - handle approve/decline or show step 1
+        if (isset($response)) {
+            // Handle approve/decline
             if ($response == 'APPROVE') {
-                $transaction_data = array(
-                    'status' => 'Y'
-                );
-                $this->transaction_model->update_transaction($currentTransaction[0]->id, $transaction_data);
-                $data['done_message'] = 'You have approved this transaction. The seller will be notified';
-            } else if ($response == 'DECLINE') {
-                $transaction_data = array(
-                    'status' => 'N'
-                );
-
-                $this->transaction_model->update_transaction($currentTransaction[0]->id, $transaction_data);
-                $data['done_message'] = 'You have declined this transaction. The seller will be notified';
-            } else {
-                $data['error_message'] = 'An Error occurred while trying to respond to this transaction';
-            }
-            $data['transaction'] = $this->transaction_model->get_transaction($transaction_reference);
-
-            $data['mainContent'] = 'transaction/new-view';
-            $this->load->view('layout/template', $data);
-        } else {
-            if (isset($currentPIN) && $currentPIN == $pin) {
-
-                $form_rules = array(
-                    array(
-                        'field' => 'pin', //name of input
-                        'label' => 'PIN number', //label of input
-                        'rules' => 'required|min_length[4]|max_length[4]', // input rules Server side validation
-                        'errors' => array(
-                            'required' => 'PIN is required', // Error message if the key is not met
-                            'min_length' => 'Please enter a valid PIN',
-                            'max_length' => 'Please enter a valid PIN'
-                        )
-                    ),
-                    array(
-                        'field' => 'response', //name of input
-                        'label' => 'Your response', //label of input
-                        'rules' => 'required', // input rules Server side validation
-                        'errors' => array(
-                            'required' => 'Either Approve or Decline the transaction', // Error message if the key is not met
-                        )
-                    )
-                );
-                $this->form_validation->set_rules($form_rules);
-                $data['title'] = 'Tracking ' . WEBSITE_NAME;
-
-                if ($this->form_validation->run() == FALSE) {
-                    $data['mainContent'] = 'transaction/new-view';
-                    $data['transaction'] = $this->transaction_model->get_transaction($transaction_reference);
-                    $this->load->view('layout/template', $data);
-                } else {
-                    if ($response == 'APPROVE') {
-                        $transaction_data = array(
-                            'status' => 'Y'
-                        );
-                        $this->transaction_model->update_transaction($currentTransaction[0]->id, $transaction_data);
-                        $data['done_message'] = 'You have approved this transaction. The seller will be notified';
-                    } else if ($response == 'DECLINE') {
-                        $transaction_data = array(
-                            'status' => 'N'
-                        );
-                        $this->transaction_model->update_transaction($currentTransaction[0]->id, $transaction_data);
-                        $data['done_message'] = 'You have declined this transaction. The seller will be notified';
-                    } else {
-                        $data['error_message'] = 'An Error occurred while trying to respond to this transaction';
-                    }
-                    $data['transaction'] = $this->transaction_model->get_transaction($transaction_reference);
-
-                    $data['mainContent'] = 'transaction/new-view';
-                    $this->load->view('layout/template', $data);
-                }
-            } else {
-
+                // Update status and redirect to step 2 (delivery form)
                 $data['transaction'] = $currentTransaction;
-                $data['title'] = 'Tracking ' . WEBSITE_NAME;
-                $data['mainContent'] = 'transaction/new-view';
-                $data['error_message'] = 'That PIN does not match our records';
-                $this->load->view('layout/template', $data);
+                $data['verified_pin'] = $pin;
+                $data['title'] = 'Lieferadresse - ' . $currentTransaction[0]->reference . ' | TrustAuto GmbH';
+                $data['mainContent'] = 'transaction/step2_content';
+                $data['additional_css'] = array('public/css/tracking.css');
+                $this->load->view('layout/landing_template', $data);
+            } else if ($response == 'DECLINE') {
+                $transaction_data = array('status' => 'N');
+                $this->transaction_model->update_transaction($currentTransaction[0]->id, $transaction_data);
+                $data['success_message'] = 'Sie haben die Transaktion abgelehnt. Der Verkäufer wird benachrichtigt.';
+                $data['reference'] = $transaction_reference;
+                $data['mainContent'] = 'transaction/tracking_pin_content';
+                $data['additional_css'] = array('public/css/tracking.css');
+                $this->load->view('layout/landing_template', $data);
             }
+        } else {
+            // PIN verified - show step 1 (transaction details)
+            $data['transaction'] = $currentTransaction;
+            $data['verified_pin'] = $pin;
+            $data['title'] = 'Transaktionsdetails - ' . $currentTransaction[0]->reference . ' | TrustAuto GmbH';
+            $data['mainContent'] = 'transaction/step1_content';
+            $data['additional_css'] = array('public/css/tracking.css');
+            $this->load->view('layout/landing_template', $data);
         }
     }
 
@@ -1000,77 +958,34 @@ class Action extends CI_Controller
     {
         $this->load->model('transaction_model');
         $data['title'] = 'Tracking ' . WEBSITE_NAME;
-        $data['footer'] = $this->lang->line('footer');
-        $data['link'] = $this->lang->line('link');
 
-        if ($reference == 'submit') {
-            $form_rules = array(
-                array(
-                    'field' => 'tracking', //name of input
-                    'label' => 'Tracking', //label of input
-                    'rules' => 'required|min_length[8]', // input rules Server side validation
-                    'errors' => array(
-                        'required' => 'Tracking is required', // Error message if the key is not met
-                        'min_length' => 'Please enter a valid tracking reference'
-                    )
-                )
-            );
-            $this->form_validation->set_rules($form_rules);
-
-            if ($this->form_validation->run() == FALSE) {
-                // redirect('site');
-                // return false;
-
-                $data['mainContent'] = 'transaction/track';
-                $this->load->view('layout/template', $data);
-            } else {
-                $tracking = $this->input->post('tracking', TRUE);
-                $ip_address = $this->getUserIpAddr();
-                $transaction = $this->transaction_model->get_transaction($tracking);
-                $count = count($transaction);
-                if ($count > 0) {
-                    // save ip address
-                    $transaction_data = array(
-                        'ip_address' => $ip_address
-                    );
-                    $this->transaction_model->update_transaction($transaction[0]->id, $transaction_data);
-
-                    $data['transaction'] = $transaction;
-                    $data['mainContent'] = 'transaction/new-view';
-                    $this->load->view('layout/template', $data);
-                } else {
-                    $data['transaction'] = $transaction;
-                    $data['error_message'] = 'We could not find your transaction';
-                    $data['mainContent'] = 'transaction/track';
-                    $this->load->view('layout/template', $data);
-                }
-            }
-            return true;
-        } else if ($reference != null && strlen($reference) == 8) {
-
+        if ($reference != null && strlen($reference) == 8) {
             $transaction = $this->transaction_model->get_transaction($reference);
             $count = count($transaction);
 
             if ($count > 0) {
-                $data['transaction'] = $transaction;
+                // Save IP address
+                $ip_address = $this->getUserIpAddr();
+                if (empty($transaction[0]->ip_address)) {
+                    $transaction_data = array('ip_address' => $ip_address);
+                    $this->transaction_model->update_transaction($transaction[0]->id, $transaction_data);
+                }
 
-                //                @TODO CHANGE VIEW TO VIEW BACK HERE
-
-                $data['mainContent'] = 'transaction/new-view';
-                $this->load->view('layout/template', $data);
+                // Show PIN entry page with landing style
+                $data['reference'] = $reference;
+                $data['error_message'] = isset($_GET['error']) ? 'Falsche PIN. Bitte versuchen Sie es erneut.' : null;
+                $data['mainContent'] = 'transaction/tracking_pin_content';
+                $data['additional_css'] = array('public/css/tracking.css');
+                $this->load->view('layout/landing_template', $data);
             } else {
-                $data['transaction'] = $transaction;
-                $data['error_message'] = 'We could not find your transaction';
-                $data['mainContent'] = 'transaction/track';
-                $this->load->view('layout/template', $data);
+                $data['error_message'] = 'Transaktion nicht gefunden. Bitte überprüfen Sie die Referenznummer.';
+                $data['reference'] = $reference;
+                $data['mainContent'] = 'transaction/tracking_pin_content';
+                $data['additional_css'] = array('public/css/tracking.css');
+                $this->load->view('layout/landing_template', $data);
             }
-        } else if ($reference == null) {
-            $data['mainContent'] = 'transaction/track';
-            $this->load->view('layout/template', $data);
         } else {
-            $data['error_message'] = 'We could not find your transaction';
-            $data['mainContent'] = 'transaction/track';
-            $this->load->view('layout/template', $data);
+            redirect(base_url());
         }
     }
 
@@ -1114,6 +1029,21 @@ class Action extends CI_Controller
     {
         $this->load->model('transaction_model');
 
+        // Validate required fields
+        $required_fields = array('b_name', 'b_email', 'b_address', 'b_country', 'b_city', 'b_postal_code', 'b_phone', 'id', 'reference');
+        foreach ($required_fields as $field) {
+            if (empty($_POST[$field])) {
+                $transaction = $this->transaction_model->get_transaction($_POST["reference"]);
+                $data['transaction'] = $transaction;
+                $data['error_message'] = 'Bitte füllen Sie alle Pflichtfelder aus.';
+                $data['title'] = 'Lieferadresse - ' . $transaction[0]->reference . ' | TrustAuto GmbH';
+                $data['mainContent'] = 'transaction/step2_content';
+                $data['additional_css'] = array('public/css/tracking.css');
+                $this->load->view('layout/landing_template', $data);
+                return;
+            }
+        }
+
         $transaction_data = array(
             'b_name' => $_POST["b_name"],
             'b_email' => $_POST["b_email"],
@@ -1151,26 +1081,24 @@ class Action extends CI_Controller
 
         // send invoice to buyer
         $this->load->library('email');
-
         $this->email->from(WEBSITE_EMAIL);
-
         $this->email->to($_POST["b_email"]);
         $this->email->subject('Die Transaktion ' . $_POST["reference"] . ' wurde gestartet!');
         $this->email->message($msg_html);
         $this->email->attach(base_url() . $pdfFilePath);
         $this->email->attach($pdfFilePath);
+        
         try {
             $this->email->send();
         } catch (Exception $e) {
-            var_dump("error: " . $e->getMessage());
+            // Log error but don't stop the process
         }
 
-        $data['title'] = 'Tracking ' . WEBSITE_NAME;
-        $data['footer'] = $this->lang->line('footer');
-        $data['link'] = $this->lang->line('link');
-        $data['mainContent'] = 'transaction/new-view';
-
-        $this->load->view('layout/template', $data);
+        // Show step 3 (confirmation page) with landing style
+        $data['title'] = 'Zahlungsbestätigung - ' . $transaction[0]->reference . ' | TrustAuto GmbH';
+        $data['mainContent'] = 'transaction/step3_content';
+        $data['additional_css'] = array('public/css/tracking.css');
+        $this->load->view('layout/landing_template', $data);
     }
 
     public function transaction_view($reference)
@@ -1179,14 +1107,19 @@ class Action extends CI_Controller
 
         $transaction = $this->transaction_model->get_transaction($reference);
 
-        // generate invoice pdf file
-        $data["transaction"] = $transaction;
-        $data['title'] = 'Tracking ' . WEBSITE_NAME;
-        $data['footer'] = $this->lang->line('footer');
-        $data['link'] = $this->lang->line('link');
-        $data['mainContent'] = 'transaction/view';
+        if (empty($transaction)) {
+            redirect(base_url());
+            return;
+        }
 
-        $this->load->view('layout/template', $data);
+        // Show final transaction view with landing style
+        $data["transaction"] = $transaction;
+        $data['title'] = 'Transaktion ' . $transaction[0]->reference . ' | TrustAuto GmbH';
+        $data['mainContent'] = 'transaction/view_content';
+        $data['additional_css'] = array('public/css/tracking.css');
+        
+        // Use landing template
+        $this->load->view('layout/landing_template', $data);
     }
 
     public function print_invoice($reference)

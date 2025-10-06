@@ -19,9 +19,10 @@ class Site extends MY_Controller {
     public function index()
     {
         $data['title'] = WEBSITE_NAME;
-        $data['landing_css'] = base_url('public/css/landing-page.css');
-        $data['landing_js'] = base_url('public/js/landing-page.js');
-        $this->load->view('layout/landing_page', $data);
+        $data['mainContent'] = 'page/landing_page';
+        $data['show_full_nav'] = true;
+        $data['show_full_footer'] = true;
+        $this->load->view('layout/landing_template', $data);
     }
 
     public function about()
