@@ -18,14 +18,8 @@ class Site extends MY_Controller {
 
     public function index()
     {
-        $data['mainContent'] = 'index';
         $data['title'] = WEBSITE_NAME;
-        $data['page_id'] = 0;
-        $data['is_homepage'] = true;
-        $data['page'] = $this->lang->line('home');
-        $data['footer'] = $this->lang->line('footer');
-        $data['link'] = $this->lang->line('link');
-        $this->load->view('layout/template', $data);
+        $this->load->view('layout/landing_page', $data);
     }
 
     public function about()
