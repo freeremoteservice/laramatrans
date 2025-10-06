@@ -130,6 +130,11 @@
         </footer>
     <?php endif; ?>
     
+    <!-- Define base_url for JavaScript -->
+    <script>
+        const base_url = '<?php echo base_url(); ?>';
+    </script>
+    
     <?php if (isset($show_full_nav) && $show_full_nav): ?>
         <script src="<?php echo base_url('public/js/landing-page.js'); ?>"></script>
     <?php endif; ?>

@@ -22,7 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               </div>
               <div class="col-lg-6">
                 <div class="form-clt">
-                  <input type="password" name="login_acc_pass" id="login_acc_pass" placeholder="Your Name">
+                  <input type="password" name="login_acc_pass" id="login_acc_pass" placeholder="Your Password">
                 </div>
               </div>
               <div class="col-lg-12" style="text-align: center">
