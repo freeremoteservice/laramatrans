@@ -7816,7 +7816,7 @@ strong {
   position: relative;
   margin-bottom: 0.75rem;
 }
-/* .detail-box .detail-name {
+.detail-box .detail-name {
   position: absolute;
   top: 0;
   left: 0;
@@ -7826,7 +7826,7 @@ strong {
   cursor: default;
   line-height: 1.2;
   color: rgba(101, 109, 120, 0.75);
-} */
+}
 .detail-box .detail-content {
   padding-left: 9.75em;
   width: auto;

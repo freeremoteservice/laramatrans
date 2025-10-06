@@ -40,7 +40,7 @@
     <link rel="stylesheet" href="<?= base_url('public/css/dashboard/style.css') ?>" />
     <link rel="stylesheet" href="<?= base_url('public/css/dashboard/track.css') ?>" />
     <!-- custom css -->
-    <!-- <link rel="stylesheet" href="<?= base_url('public/css/custom.css') ?>" /> -->
+    <link rel="stylesheet" href="<?= base_url('public/css/custom.css') ?>" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
