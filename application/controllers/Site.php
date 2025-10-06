@@ -19,6 +19,8 @@ class Site extends MY_Controller {
     public function index()
     {
         $data['title'] = WEBSITE_NAME;
+        $data['landing_css'] = base_url('public/css/landing-page.css');
+        $data['landing_js'] = base_url('public/js/landing-page.js');
         $this->load->view('layout/landing_page', $data);
     }
 
