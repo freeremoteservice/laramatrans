@@ -66,7 +66,15 @@
 switch (ENVIRONMENT)
 {
 	case 'development':
-		error_reporting(-1);
+		// Exclude E_DEPRECATED for PHP 8.2+ compatibility with CodeIgniter 3
+		if (version_compare(PHP_VERSION, '8.0.0', '>='))
+		{
+			error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
+		}
+		else
+		{
+			error_reporting(-1);
+		}
 		ini_set('display_errors', 1);
 	break;
 
