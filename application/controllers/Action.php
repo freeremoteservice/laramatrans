@@ -549,6 +549,7 @@ class Action extends CI_Controller
                 $data['title'] = 'Lieferadresse - ' . $currentTransaction[0]->reference . ' | TrustAuto GmbH';
                 $data['mainContent'] = 'transaction/step2_content';
                 $data['additional_css'] = array('public/css/tracking.css');
+                $data['additional_js'] = array('public/js/signature-pad.js');
                 $this->load->view('layout/landing_template', $data);
             } else if ($response == 'DECLINE') {
                 $transaction_data = array('status' => 'N');
@@ -1041,15 +1042,16 @@ class Action extends CI_Controller
         $this->load->model('transaction_model');
 
         // Validate required fields
-        $required_fields = array('b_name', 'b_email', 'b_address', 'b_country', 'b_city', 'b_postal_code', 'b_phone', 'id', 'reference');
+        $required_fields = array('b_name', 'b_email', 'b_address', 'b_country', 'b_city', 'b_postal_code', 'b_phone', 'signature', 'id', 'reference');
         foreach ($required_fields as $field) {
             if (empty($_POST[$field])) {
                 $transaction = $this->transaction_model->get_transaction($_POST["reference"]);
                 $data['transaction'] = $transaction;
-                $data['error_message'] = 'Bitte füllen Sie alle Pflichtfelder aus.';
+                $data['error_message'] = 'Bitte füllen Sie alle Pflichtfelder aus, einschließlich der Unterschrift.';
                 $data['title'] = 'Lieferadresse - ' . $transaction[0]->reference . ' | TrustAuto GmbH';
                 $data['mainContent'] = 'transaction/step2_content';
                 $data['additional_css'] = array('public/css/tracking.css');
+                $data['additional_js'] = array('public/js/signature-pad.js');
                 $this->load->view('layout/landing_template', $data);
                 return;
             }
@@ -1063,6 +1065,7 @@ class Action extends CI_Controller
             'b_city' => $_POST["b_city"],
             'b_postal_code' => $_POST["b_postal_code"],
             'b_phone' => $_POST["b_phone"],
+            'b_signature' => $_POST["signature"],
             'status' => '3' // Payment Confirmed
         );
         $this->transaction_model->update_transaction($_POST["id"], $transaction_data);

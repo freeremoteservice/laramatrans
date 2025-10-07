@@ -128,8 +128,24 @@
                     <small>An diese Adresse wird die Rechnung gesendet</small>
                 </div>
 
+                <div class="form-group-tracking">
+                    <label for="signature">
+                        <i class="fas fa-signature"></i> Unterschrift *
+                    </label>
+                    <div class="signature-container">
+                        <canvas id="signature-pad" class="signature-pad"></canvas>
+                        <input type="hidden" id="signature" name="signature" required>
+                    </div>
+                    <div class="signature-buttons">
+                        <button type="button" id="clear-signature" class="btn-clear-signature">
+                            <i class="fas fa-eraser"></i> Unterschrift löschen
+                        </button>
+                    </div>
+                    <small>Bitte unterschreiben Sie mit Ihrer Maus oder Ihrem Finger (auf Touchscreens)</small>
+                </div>
+
                 <div class="button-group">
-                    <button type="submit" class="btn-primary-tracking">
+                    <button type="submit" class="btn-primary-tracking" id="submit-btn">
                         <i class="fas fa-arrow-right"></i> Weiter zur Bestätigung
                     </button>
                 </div>
