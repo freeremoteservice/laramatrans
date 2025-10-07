@@ -19,6 +19,13 @@
 
         <!-- Transaction Header -->
         <div class="tracking-card">
+            <?php if (isset($decline_success) && $decline_success): ?>
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i>
+                    Sie haben die Transaktion erfolgreich abgelehnt. Der Verkäufer wird benachrichtigt.
+                </div>
+            <?php endif; ?>
+            
             <div class="tracking-header">
                 <h2>Transaktionsdetails für ID <?php echo $transaction[0]->reference; ?></h2>
                 <p><?php echo $transaction[0]->b_detail_1; ?></p>
@@ -97,17 +104,13 @@
 
             <!-- Action Buttons -->
             <div class="action-buttons">
-                <form action="<?php echo site_url('respond/' . $transaction[0]->reference); ?>" method="POST" style="display: inline;">
-                    <input type="hidden" name="response" value="APPROVE">
-                    <input type="hidden" name="pin" value="<?php echo isset($verified_pin) ? $verified_pin : ''; ?>">
-                    <button type="submit" class="btn-approve">
-                        <i class="fas fa-check-circle"></i> AKZEPTIEREN
-                    </button>
-                </form>
+                <button type="button" class="btn-approve" id="approve-btn">
+                    <i class="fas fa-check-circle"></i> AKZEPTIEREN
+                </button>
                 
                 <form action="<?php echo site_url('respond/' . $transaction[0]->reference); ?>" method="POST" style="display: inline;">
                     <input type="hidden" name="response" value="DECLINE">
-                    <input type="hidden" name="pin" value="<?php echo isset($verified_pin) ? $verified_pin : ''; ?>">
+                    <input type="hidden" name="pin" value="">
                     <button type="submit" class="btn-decline">
                         <i class="fas fa-times-circle"></i> ABBRECHEN
                     </button>
@@ -116,4 +119,40 @@
         </div>
     </div>
 </section>
+
+<!-- PIN Modal -->
+<div id="pin-modal" class="pin-modal" style="display: none;">
+    <div class="pin-modal-content">
+        <div class="pin-modal-header">
+            <h3><i class="fas fa-lock"></i> PIN-Verifizierung erforderlich</h3>
+            <button type="button" class="pin-modal-close" id="close-pin-modal">&times;</button>
+        </div>
+        <div class="pin-modal-body">
+            <p>Bitte geben Sie Ihre PIN ein, um die Transaktion zu akzeptieren:</p>
+            <form action="<?php echo site_url('respond/' . $transaction[0]->reference); ?>" method="POST" id="pin-form">
+                <input type="hidden" name="response" value="APPROVE">
+                <div class="pin-input-group">
+                    <input type="password" 
+                           id="pin-input" 
+                           name="pin" 
+                           class="pin-input" 
+                           placeholder="PIN eingeben" 
+                           maxlength="4"
+                           required>
+                </div>
+                <div id="pin-error" class="pin-error" style="display: <?php echo (isset($pin_error) && $pin_error) ? 'flex' : 'none'; ?>;">
+                    <i class="fas fa-exclamation-circle"></i> <span id="pin-error-message">Falsche PIN. Bitte versuchen Sie es erneut.</span>
+                </div>
+                <div class="pin-modal-buttons">
+                    <button type="button" class="btn-cancel-pin" id="cancel-pin-btn">
+                        Abbrechen
+                    </button>
+                    <button type="submit" class="btn-submit-pin">
+                        <i class="fas fa-check"></i> Bestätigen
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 

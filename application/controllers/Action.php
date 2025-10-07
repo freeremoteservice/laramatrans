@@ -533,40 +533,43 @@ class Action extends CI_Controller
         $pin = $this->input->post('pin');
         $response = $this->input->post('response');
 
-        // Verify PIN first
-        if (!isset($pin) || $currentPIN != $pin) {
-            redirect(site_url('track/' . $transaction_reference . '?error=1'));
-            return false;
-        }
-
-        // PIN is correct - handle approve/decline or show step 1
-        if (isset($response)) {
-            // Handle approve/decline
-            if ($response == 'APPROVE') {
-                // Update status and redirect to step 2 (delivery form)
-                $data['transaction'] = $currentTransaction;
-                $data['verified_pin'] = $pin;
-                $data['title'] = 'Lieferadresse - ' . $currentTransaction[0]->reference . ' | TrustAuto GmbH';
-                $data['mainContent'] = 'transaction/step2_content';
-                $data['additional_css'] = array('public/css/tracking.css');
-                $data['additional_js'] = array('public/js/signature-pad.js');
-                $this->load->view('layout/landing_template', $data);
-            } else if ($response == 'DECLINE') {
-                $transaction_data = array('status' => 'N');
-                $this->transaction_model->update_transaction($currentTransaction[0]->id, $transaction_data);
-                $data['success_message'] = 'Sie haben die Transaktion abgelehnt. Der Verkäufer wird benachrichtigt.';
-                $data['reference'] = $transaction_reference;
-                $data['mainContent'] = 'transaction/tracking_pin_content';
-                $data['additional_css'] = array('public/css/tracking.css');
-                $this->load->view('layout/landing_template', $data);
-            }
-        } else {
-            // PIN verified - show step 1 (transaction details)
+        // Handle DECLINE (no PIN required for decline)
+        if ($response == 'DECLINE') {
+            $transaction_data = array('status' => '0', 'date_updated' => date('Y-m-d H:i:s'));
+            $this->transaction_model->update_transaction($currentTransaction[0]->id, $transaction_data);
+            
+            // Show success message on step 1
             $data['transaction'] = $currentTransaction;
-            $data['verified_pin'] = $pin;
-            $data['title'] = 'Transaktionsdetails - ' . $currentTransaction[0]->reference . ' | TrustAuto GmbH';
+            $data['title'] = 'Transaktion abgelehnt - ' . $currentTransaction[0]->reference . ' | TrustAuto GmbH';
             $data['mainContent'] = 'transaction/step1_content';
             $data['additional_css'] = array('public/css/tracking.css');
+            $data['additional_js'] = array('public/js/step1-pin-modal.js');
+            $data['decline_success'] = true;
+            $this->load->view('layout/landing_template', $data);
+            return;
+        }
+
+        // Handle APPROVE - verify PIN
+        if ($response == 'APPROVE') {
+            if (!isset($pin) || $currentPIN != $pin) {
+                // Wrong PIN - show step 1 again with error
+                $data['transaction'] = $currentTransaction;
+                $data['title'] = 'Transaktionsdetails - ' . $currentTransaction[0]->reference . ' | TrustAuto GmbH';
+                $data['mainContent'] = 'transaction/step1_content';
+                $data['additional_css'] = array('public/css/tracking.css');
+                $data['additional_js'] = array('public/js/step1-pin-modal.js');
+                $data['pin_error'] = true;
+                $this->load->view('layout/landing_template', $data);
+                return false;
+            }
+
+            // PIN is correct - go to step 2 (delivery form)
+            $data['transaction'] = $currentTransaction;
+            $data['verified_pin'] = $pin;
+            $data['title'] = 'Lieferadresse - ' . $currentTransaction[0]->reference . ' | TrustAuto GmbH';
+            $data['mainContent'] = 'transaction/step2_content';
+            $data['additional_css'] = array('public/css/tracking.css');
+            $data['additional_js'] = array('public/js/signature-pad.js');
             $this->load->view('layout/landing_template', $data);
         }
     }
@@ -965,7 +968,7 @@ class Action extends CI_Controller
             $count = count($transaction);
 
             if ($count > 0) {
-                // Check if admin is logged in - skip PIN entry
+                // Check if admin is logged in - skip to admin view
                 if ($this->session->userdata('status') == 'logged_in' && $this->session->userdata('role') == 'Admin') {
                     // Admin user - go directly to transaction view
                     $data['footer'] = $this->lang->line('footer');
@@ -983,18 +986,16 @@ class Action extends CI_Controller
                     $this->transaction_model->update_transaction($transaction[0]->id, $transaction_data);
                 }
 
-                // Show PIN entry page with landing style for buyers
-                $data['reference'] = $reference;
-                $data['error_message'] = isset($_GET['error']) ? 'Falsche PIN. Bitte versuchen Sie es erneut.' : null;
-                $data['mainContent'] = 'transaction/tracking_pin_content';
+                // Show step 1 (transaction details) directly with landing style
+                $data['transaction'] = $transaction;
+                $data['title'] = 'Transaktionsdetails - ' . $transaction[0]->reference . ' | TrustAuto GmbH';
+                $data['mainContent'] = 'transaction/step1_content';
                 $data['additional_css'] = array('public/css/tracking.css');
+                $data['additional_js'] = array('public/js/step1-pin-modal.js');
                 $this->load->view('layout/landing_template', $data);
             } else {
-                $data['error_message'] = 'Transaktion nicht gefunden. Bitte überprüfen Sie die Referenznummer.';
-                $data['reference'] = $reference;
-                $data['mainContent'] = 'transaction/tracking_pin_content';
-                $data['additional_css'] = array('public/css/tracking.css');
-                $this->load->view('layout/landing_template', $data);
+                // Transaction not found - redirect to landing page
+                redirect(base_url());
             }
         } else {
             redirect(base_url());
