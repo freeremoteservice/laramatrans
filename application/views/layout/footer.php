@@ -57,6 +57,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </a>
                   </li>
                   <li>
+                    <a href="<?= base_url('site/privacy_policy') ?>">
+                      Datenschutz
+                    </a>
+                  </li>
+                  <li>
                     <a href="<?= base_url('site/legal_info') ?>">
                       Impressum
                     </a>

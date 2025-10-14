@@ -115,12 +115,20 @@ class Site extends MY_Controller {
 
     public function terms_and_conditions()
     {
+        $data['title'] = 'Allgemeine Geschäftsbedingungen - ' . WEBSITE_NAME;
         $data['mainContent'] = 'page/terms-and-conditions';
-        $data['title'] = 'Terms and Conditions ' . WEBSITE_NAME;
-        $data['page'] = $this->lang->line('home');
-        $data['footer'] = $this->lang->line('footer');
-        $data['link'] = $this->lang->line('link');
-        $this->load->view('layout/template', $data);
+        $data['show_full_nav'] = false;
+        $data['show_full_footer'] = true;
+        $this->load->view('layout/landing_template', $data);
+    }
+
+    public function privacy_policy()
+    {
+        $data['title'] = 'Datenschutz - ' . WEBSITE_NAME;
+        $data['mainContent'] = 'page/privacy-policy';
+        $data['show_full_nav'] = false;
+        $data['show_full_footer'] = true;
+        $this->load->view('layout/landing_template', $data);
     }
 
     public function error_404()

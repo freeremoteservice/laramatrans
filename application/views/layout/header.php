@@ -8,6 +8,7 @@
     <meta name="author" content="pixydrops">
     <!-- ======== Page title ============ -->
     <title> <?= WEBSITE_NAME ?></title>
+    <link rel="icon" type="image/x-icon" href="<?= base_url('public/img/favicon.ico'); ?>">
     <!--<< Favcion >>-->
     <link rel="shortcut icon" href="<?= base_url('assets/img/new_logo.png') ?>">
     <!--<< Bootstrap min.css >>-->

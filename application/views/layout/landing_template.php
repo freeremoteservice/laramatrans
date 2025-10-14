@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($title) ? $title : 'TrustAuto GmbH - Sicherer Autokauf mit persönlichem Berater'; ?></title>
+    <link rel="icon" type="image/x-icon" href="<?php echo base_url('public/img/favicon.ico'); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- External CSS for Landing Page -->
     <link rel="stylesheet" href="<?php echo base_url('public/css/landing-page.css'); ?>">
@@ -70,43 +71,31 @@
                     <div class="footer-column">
                         <h3>Leistungen</h3>
                         <ul>
-                            <li><a href="#services"><i class="fas fa-chevron-right"></i> Treuhandservice</a></li>
-                            <li><a href="#process"><i class="fas fa-chevron-right"></i> Kaufabwicklung</a></li>
-                            <li><a href="#specialization"><i class="fas fa-chevron-right"></i> Transport-Services</a></li>
-                            <li><a href="#tracking"><i class="fas fa-chevron-right"></i> Sendungsverfolgung</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-column">
-                        <h3>Unternehmen</h3>
-                        <ul>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> Über uns</a></li>
-                            <li><a href="#contact"><i class="fas fa-chevron-right"></i> Kontakt</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> Karriere</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> Partner</a></li>
+                            <li><a href="<?= base_url() . '#services'; ?>"><i class="fas fa-chevron-right"></i> Treuhandservice</a></li>
+                            <li><a href="<?= base_url() . '#process'; ?>"><i class="fas fa-chevron-right"></i> Kaufabwicklung</a></li>
+                            <li><a href="<?= base_url() . '#specialization'; ?>"><i class="fas fa-chevron-right"></i> Transport-Services</a></li>
+                            <li><a href="<?= base_url() . '#tracking'; ?>"><i class="fas fa-chevron-right"></i> Sendungsverfolgung</a></li>
                         </ul>
                     </div>
                     
                     <div class="footer-column">
                         <h3>Rechtliches</h3>
                         <ul>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> Impressum</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> Datenschutz</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> AGB</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> Widerrufsrecht</a></li>
+                            <li><a href="<?= base_url('site/privacy_policy') ?>"><i class="fas fa-chevron-right"></i> Datenschutz</a></li>
+                            <li><a href="<?= base_url('site/terms_and_conditions') ?>"><i class="fas fa-chevron-right"></i> AGB</a></li>
+                            <li><a href="<?= base_url() . '#contact'; ?>"><i class="fas fa-chevron-right"></i> Kontakt</a></li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="company-info">
                     <p><strong><?= WEBSITE_NAME ?></strong></p>
-                    <p>Musterstraße 123 • 10115 Berlin</p>
-                    <p>Telefon: +49 (0) 30 12345678 • E-Mail: info@trustauto-gmbh.de</p>
-                    <p>Geschäftsführer: Max Mustermann • Handelsregister: HRB 123456</p>
+                    <p><?= WEBSITE_ADDRESS; ?></p>
+                    <p>Telefon: <?= WEBSITE_PHONE; ?> • E-Mail: <?= WEBSITE_EMAIL; ?></p>
                 </div>
-                
+
                 <div class="footer-bottom">
-                    <p>&copy; 2023 <?= WEBSITE_NAME ?>. Alle Rechte vorbehalten.</p>
+                    <p>&copy; 2025 <?= WEBSITE_NAME ?>. Alle Rechte vorbehalten.</p>
                 </div>
             </div>
         </footer>
