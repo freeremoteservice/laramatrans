@@ -64,7 +64,7 @@
             <div class="header-left">
               <div class="logo">
                 <a href="<?= base_url() ?>" class="header-logo">
-                  <img src="<?= base_url('public/img/logo.png') ?>" alt="logo-img">
+                  <img src="<?= base_url('public/img/logo.png') ?>" alt="logo-img" style="height: 68px;">
                 </a>
               </div>
               <div class="mean__menu-wrapper">

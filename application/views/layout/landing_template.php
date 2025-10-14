@@ -15,13 +15,10 @@
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header style="padding: 5px 0;">
         <div class="container header-container">
             <div class="logo">
-                <i class="fas fa-car logo-icon"></i>
-                <a href="<?php echo base_url(); ?>" style="color: inherit; text-decoration: none;">
-                    TrustAuto<span>GmbH</span>
-                </a>
+                <img src="<?php echo base_url('public/img/logo.png'); ?>" alt="TrustAuto GmbH" style="height: 68px;">
             </div>
             <?php if (isset($show_full_nav) && $show_full_nav): ?>
                 <!-- Full Navigation for Landing Page -->
@@ -66,7 +63,7 @@
             <div class="container">
                 <div class="footer-content">
                     <div class="footer-column">
-                        <h3>TrustAuto GmbH</h3>
+                        <h3><?= WEBSITE_NAME ?></h3>
                         <p>Ihr professioneller Partner für sicheren Fahrzeugkauf mit Treuhandservice und persönlicher Betreuung.</p>
                     </div>
                     
@@ -102,14 +99,14 @@
                 </div>
                 
                 <div class="company-info">
-                    <p><strong>TrustAuto GmbH</strong></p>
+                    <p><strong><?= WEBSITE_NAME ?></strong></p>
                     <p>Musterstraße 123 • 10115 Berlin</p>
                     <p>Telefon: +49 (0) 30 12345678 • E-Mail: info@trustauto-gmbh.de</p>
                     <p>Geschäftsführer: Max Mustermann • Handelsregister: HRB 123456</p>
                 </div>
                 
                 <div class="footer-bottom">
-                    <p>&copy; 2023 TrustAuto GmbH. Alle Rechte vorbehalten.</p>
+                    <p>&copy; 2023 <?= WEBSITE_NAME ?>. Alle Rechte vorbehalten.</p>
                 </div>
             </div>
         </footer>
