@@ -27,8 +27,7 @@
             <!-- Payment Details Grid -->
             <div class="details-grid">
                 <!-- Payment Details -->
-                <div class="transaction-details-card">
-                    <h3><i class="fas fa-credit-card"></i> Zahlungsdetails</h3>
+                <div class="transaction-details-card" style="margin-bottom: 0;">
                     <div class="detail-row">
                         <span class="detail-label">Fahrzeug:</span>
                         <span class="detail-value highlight"><?php echo $transaction[0]->p_brief; ?></span>
@@ -41,20 +40,22 @@
                         <span class="detail-label">Inspektionszeitraum:</span>
                         <span class="detail-value"><?php echo $transaction[0]->inspection_days; ?> Tage</span>
                     </div>
-                </div>
-
-                <!-- Transaction Details -->
-                <div class="transaction-details-card">
-                    <h3><i class="fas fa-file-invoice"></i> Transaktionsdetails</h3>
                     <div class="detail-row">
                         <span class="detail-label">Zahlungsmethode:</span>
                         <span class="detail-value">Banküberweisung</span>
                     </div>
                     <div class="detail-row">
-                        <span class="detail-label">Zahlungsfrist:</span>
-                        <span class="detail-value">24 Stunden</span>
+                        <span class="detail-label">Transaktionsstatus:</span>
+                        <span class="detail-value">Zahlung ausstehend</span>
                     </div>
                 </div>
+            </div>
+
+            <!-- Important Notice -->
+            <div class="info-box">
+                <p>
+                    <strong>Verfügbare Dienstleistungen für diese Transaktion:</strong> Fahrzeugabholung / Fahrzeugtransport / 14 Tage Geld-zurück-Garantie</a>.
+                </p>
             </div>
 
             <!-- Delivery Address Summary -->
@@ -86,48 +87,11 @@
                 </div>
             </div>
 
-            <!-- Bank Transfer Details -->
-            <div class="transaction-details-card" style="margin-top: 2rem; background: rgba(59, 130, 246, 0.05);">
-                <h3><i class="fas fa-university"></i> Überweisungsdetails</h3>
-                <div class="detail-row">
-                    <span class="detail-label">Empfänger:</span>
-                    <span class="detail-value"><?php echo $transaction[0]->b_detail_1; ?></span>
-                </div>
-                <div class="detail-row">
-                    <span class="detail-label">Bank:</span>
-                    <span class="detail-value"><?php echo $transaction[0]->b_detail_4; ?></span>
-                </div>
-                <div class="detail-row">
-                    <span class="detail-label">IBAN:</span>
-                    <span class="detail-value highlight"><?php echo $transaction[0]->b_detail_2; ?></span>
-                </div>
-                <div class="detail-row">
-                    <span class="detail-label">BIC/SWIFT:</span>
-                    <span class="detail-value highlight"><?php echo $transaction[0]->b_detail_3; ?></span>
-                </div>
-                <div class="detail-row">
-                    <span class="detail-label">Betrag:</span>
-                    <span class="detail-value highlight" style="font-size: 1.3rem;"><?php echo number_format($transaction[0]->p_value, 2, ',', '.'); ?> €</span>
-                </div>
-                <div class="detail-row">
-                    <span class="detail-label">Verwendungszweck:</span>
-                    <span class="detail-value">Transaktion <?php echo $transaction[0]->reference; ?></span>
-                </div>
-            </div>
-
             <!-- Important Notice -->
             <div class="info-box" style="margin-top: 2rem;">
                 <p>
                     <strong><i class="fas fa-shield-alt"></i> Wichtig:</strong> Die Rechnung wurde an Ihre E-Mail-Adresse (<strong><?php echo $transaction[0]->b_email; ?></strong>) gesendet.
                     Sie können <a href="<?php echo base_url('action/print_invoice/' . $transaction[0]->reference); ?>" style="color: var(--accent-light); text-decoration: underline;">Ihre Rechnung hier ausdrucken</a>.
-                </p>
-            </div>
-
-            <!-- FAQ Section -->
-            <div class="transaction-details-card" style="margin-top: 2rem;">
-                <h3><i class="fas fa-question-circle"></i> Kann ich das Fahrzeug wirklich wieder zurückgeben?</h3>
-                <p style="color: var(--text-light); line-height: 1.6; margin-top: 1rem;">
-                    Natürlich, das können Sie. Wir stehen voll und ganz hinter unseren Dienstleistungen. TrustAuto ist der sicherste Weg, einen Gebrauchtwagen zu kaufen. Das ausgesuchte Fahrzeug wird vor dem Kauf zunächst gründlich von uns untersucht. TrustAuto übernimmt soweit jeweils sämtliche mit dem Fahrzeug verbundenen Risiken. Wenn es Ihnen dann doch nicht gefallen sollte, können Sie es uns innerhalb von <?php echo $transaction[0]->inspection_days; ?> Tagen ab Übernahme wieder zurückgeben (nähere Details siehe AGB).
                 </p>
             </div>
 
@@ -139,7 +103,7 @@
             <!-- Confirmation Button -->
             <div class="button-group" style="margin-top: 2.5rem;">
                 <button type="button" class="btn-primary-tracking" style="background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);" onclick="window.location.href='<?php echo base_url('transaction/view/' . $transaction[0]->reference); ?>'">
-                    <i class="fas fa-check-double"></i> Ich stimme zu und bestätige die Zahlung
+                    <i class="fas fa-check-double"></i> Ich bestätige
                 </button>
             </div>
         </div>

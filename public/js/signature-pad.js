@@ -85,10 +85,54 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!isDrawing) return;
         isDrawing = false;
         
-        // Save signature as base64
+        // Save signature as base64 without border
         if (hasDrawn) {
-            const dataURL = canvas.toDataURL('image/png');
-            signatureInput.value = dataURL;
+            // Create a temporary canvas to crop the signature content
+            const tempCanvas = document.createElement('canvas');
+            const tempCtx = tempCanvas.getContext('2d');
+            
+            // Get the bounding box of the signature
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+            
+            let minX = canvas.width, minY = canvas.height, maxX = 0, maxY = 0;
+            let foundPixel = false;
+            
+            // Find the bounding box of non-transparent pixels
+            for (let y = 0; y < canvas.height; y++) {
+                for (let x = 0; x < canvas.width; x++) {
+                    const index = (y * canvas.width + x) * 4;
+                    if (data[index + 3] > 0) { // Check alpha channel
+                        foundPixel = true;
+                        minX = Math.min(minX, x);
+                        minY = Math.min(minY, y);
+                        maxX = Math.max(maxX, x);
+                        maxY = Math.max(maxY, y);
+                    }
+                }
+            }
+            
+            if (foundPixel) {
+                // Add some padding
+                const padding = 10;
+                minX = Math.max(0, minX - padding);
+                minY = Math.max(0, minY - padding);
+                maxX = Math.min(canvas.width, maxX + padding);
+                maxY = Math.min(canvas.height, maxY + padding);
+                
+                // Set temporary canvas size to cropped area
+                tempCanvas.width = maxX - minX;
+                tempCanvas.height = maxY - minY;
+                
+                // Draw the cropped signature
+                tempCtx.drawImage(canvas, minX, minY, maxX - minX, maxY - minY, 0, 0, maxX - minX, maxY - minY);
+                
+                // Save the cropped signature
+                const dataURL = tempCanvas.toDataURL('image/png');
+                signatureInput.value = dataURL;
+            } else {
+                signatureInput.value = '';
+            }
         }
     }
     

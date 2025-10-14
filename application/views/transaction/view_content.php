@@ -42,41 +42,12 @@
                         <span class="detail-value highlight"><?php echo $transaction[0]->p_brief; ?></span>
                     </div>
                     <div class="detail-row">
-                        <span class="detail-label">Fahrzeugtyp:</span>
-                        <span class="detail-value"><?php echo $transaction[0]->p_type; ?></span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Menge:</span>
-                        <span class="detail-value"><?php echo $transaction[0]->p_qty; ?></span>
-                    </div>
-                    <div class="detail-row">
                         <span class="detail-label">Gesamtpreis:</span>
                         <span class="detail-value highlight"><?php echo number_format($transaction[0]->p_value, 2, ',', '.'); ?> €</span>
-                    </div>
-                </div>
-
-                <div class="transaction-details-card">
-                    <h3><i class="fas fa-info-circle"></i> Zusätzliche Informationen</h3>
-                    <div class="detail-row">
-                        <span class="detail-label">Beschreibung:</span>
-                        <span class="detail-value"><?php echo $transaction[0]->p_description; ?></span>
                     </div>
                     <div class="detail-row">
                         <span class="detail-label">Inspektionszeitraum:</span>
                         <span class="detail-value"><?php echo $transaction[0]->inspection_days; ?> <?php echo ($transaction[0]->inspection_days > 1) ? 'Tage' : 'Tag'; ?></span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Frist:</span>
-                        <span class="detail-value">
-                            <?php 
-                            $days_left = dateDiff($transaction[0]->deadline);
-                            if ($days_left < 0): ?>
-                                <?php echo date("d.m.Y", strtotime($transaction[0]->deadline)); ?> | 
-                                <span style="color: #22c55e;"><?php echo ($days_left * -1); ?> <?php echo ($days_left == -1) ? 'Tag' : 'Tage'; ?> übrig</span>
-                            <?php else: ?>
-                                <span style="color: #ef4444;">Abgelaufen am <?php echo date("d.m.Y", strtotime($transaction[0]->deadline)); ?></span>
-                            <?php endif; ?>
-                        </span>
                     </div>
                     <div class="detail-row">
                         <span class="detail-label">Zahlungsart:</span>
@@ -89,8 +60,8 @@
             <div class="transaction-details-card" style="margin-top: 2rem;">
                 <h3><i class="fas fa-truck"></i> Transport & Status</h3>
                 <div class="detail-row">
-                    <span class="detail-label">Erstellt am:</span>
-                    <span class="detail-value"><?php echo date("d.m.Y H:i", strtotime($transaction[0]->date_created)); ?></span>
+                    <span class="detail-label">Transportstatus:</span>
+                    <span class="detail-value" style="color: #ef4444;">Das Fahrzeug wird an der Adresse des Verkäufers abgeholt</span>
                 </div>
                 <div class="detail-row">
                     <span class="detail-label">Transportart:</span>
@@ -101,37 +72,11 @@
                     <span class="detail-value highlight"><?php echo $transaction[0]->reference; ?></span>
                 </div>
                 <div class="detail-row">
-                    <span class="detail-label">Aktueller Status:</span>
+                    <span class="detail-label">Transaktionsstatus:</span>
                     <span class="detail-value">
-                        <?php if ($transaction[0]->status == 'Y'): ?>
-                            <span style="color: #22c55e; font-weight: 600;">
-                                <i class="fas fa-check-circle"></i> Genehmigt
-                            </span>
-                            <?php if (!empty($transaction[0]->date_updated)): ?>
-                                am <?php echo date("d.m.Y", strtotime($transaction[0]->date_updated)); ?>
-                            <?php endif; ?>
-                        <?php elseif ($transaction[0]->status == 'N'): ?>
-                            <span style="color: #ef4444; font-weight: 600;">
-                                <i class="fas fa-times-circle"></i> Abgelehnt
-                            </span>
-                            <?php if (!empty($transaction[0]->date_updated)): ?>
-                                am <?php echo date("d.m.Y", strtotime($transaction[0]->date_updated)); ?>
-                            <?php endif; ?>
-                        <?php elseif ($transaction[0]->status == '3'): ?>
-                            <span style="color: #22c55e; font-weight: 600;">
-                                <i class="fas fa-check-double"></i> Zahlung bestätigt
-                            </span>
-                        <?php else: ?>
-                            <?php if (dateDiff($transaction[0]->deadline) < 0): ?>
-                                <span style="color: #fbbf24; font-weight: 600;">
-                                    <i class="fas fa-clock"></i> Ausstehend - Warten auf Käuferantwort
-                                </span>
-                            <?php else: ?>
-                                <span style="color: #64748b; font-weight: 600;">
-                                    <i class="fas fa-exclamation-triangle"></i> Abgelaufen
-                                </span>
-                            <?php endif; ?>
-                        <?php endif; ?>
+                        <span style="color: #fbbf24; font-weight: 600;">
+                            <i class="fas fa-clock"></i> Zahlung ausstehend
+                        </span>
                     </span>
                 </div>
             </div>

@@ -370,5 +370,30 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- Signature Section -->
+		<div style="width: 100%;">
+			<!-- Company Stamp and Signature -->
+			<div style="width: 33.333%; float: left; text-align: center;">
+				<img src="<?= base_url('public/img/stamp.png'); ?>" style="width: 80px; height: auto; margin-bottom: 20px;" />
+				<div style="border-bottom: 1px solid black; width: 150px; margin: 0 auto; height: 30px;">
+					company signature
+				</div>
+			</div>
+			
+			<!-- Seller Signature -->
+			<div style="width: 33.333%; float: left; text-align: center;">
+				<div style="border-bottom: 1px solid black; width: 150px; margin: 0 auto; height: 30px;">
+					seller signature
+				</div>
+			</div>
+			
+			<!-- Buyer Signature -->
+			<div style="width: 33.333%; float: left; text-align: center;">
+				<div style="border-bottom: 1px solid black; width: 150px; margin: 0 auto; height: 30px;">
+					<img src="<?= $transaction[0]->b_signature ?>" style="width: 150px; height: 30px; display: block;" />
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

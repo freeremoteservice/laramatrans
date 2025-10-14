@@ -98,7 +98,7 @@ if ($transaction[0]->ip_address != "") {
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-5 col-sm-12"><strong>Transportstatus</strong></div>
-                                                    <div class="col-lg-7 col-sm-12"><strong style="color: red">Das Fahrzeug muss an der Adresse des Verkäufers abgeholt werden</strong></div>
+                                                    <div class="col-lg-7 col-sm-12"><strong style="color: red">Das Fahrzeug wird an der Adresse des Verkäufers abgeholt</strong></div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-5 col-sm-12"><strong>Zahlungsmethode</strong></div>
