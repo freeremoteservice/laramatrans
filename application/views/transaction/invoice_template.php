@@ -78,7 +78,7 @@
 		margin: 0;
 	}
 	.description_box {
-		padding-top: 15px;
+		padding-top: 10px;
 	}
 	.description_box .title {
 		margin: 0;
@@ -225,7 +225,7 @@
 	</div>
 
 	<div class="content">
-		<div class="detail-2-1" style="padding-top: 30px;">
+		<div class="detail-2-1" style="padding-top: 20px;">
 			<div class="information_box">
 				<p><strong>Vermittler: </strong><?= WEBSITE_NAME ?></p>
 				<p><strong>Zahlungsagent: </strong><?= $transaction[0]->b_detail_1 ?></p>
@@ -246,7 +246,7 @@
 			</div>
 		</div>
 
-		<div class="detail-2-2" style="clear: both; padding-top: 15px;">
+		<div class="detail-2-2" style="clear: both; padding-top: 10px;">
 			<div class="information_box">
 				<p><strong>Transaktion einzelheiten</strong></p>
 				<p>Transaktions-ID: <span><?= $transaction[0]->reference ?></span></p>
@@ -372,27 +372,27 @@
 		</div>
 
 		<!-- Signature Section -->
-		<div style="width: 100%;">
+		<div style="width: 100%; margin-top: 40px;">
 			<!-- Company Stamp and Signature -->
-			<div style="width: 33.333%; float: left; text-align: center;">
-				<img src="<?= base_url('public/img/stamp.png'); ?>" style="width: 80px; height: auto; margin-bottom: 20px;" />
-				<div style="border-bottom: 1px solid black; width: 150px; margin: 0 auto; height: 30px;">
-					company signature
-				</div>
+			<div style="width: 33.333%; height: 120px; float: left; position: relative;">
+				<label for="" style="position: absolute; top: 0; left: 0; font-weight: bold; width: 100%; text-align: center;">Unterschrift des Unternehmens</label>
+				<img src="<?= base_url('public/img/stamp.png'); ?>" style="width: 80px; height: auto; position: absolute; top: 30px; left: 80px;" />
+				<img src="<?= base_url('public/img/signature_company.png'); ?>" style="height: 150px; position: absolute; bottom: -20px;" />
+				<div style="border-bottom: 1px solid black; width: 180px; position: absolute; left: 30px; bottom: 0;"></div>
 			</div>
 			
 			<!-- Seller Signature -->
-			<div style="width: 33.333%; float: left; text-align: center;">
-				<div style="border-bottom: 1px solid black; width: 150px; margin: 0 auto; height: 30px;">
-					seller signature
-				</div>
+			<div style="width: 33.333%; height: 120px; float: left; position: relative;">
+				<label for="" style="position: absolute; top: 0; left: 0; font-weight: bold; width: 100%; text-align: center;">Unterschrift des Verkäufers</label>
+				<img src="<?= base_url('public/img/signature-seller.png'); ?>" style="height: 70px; position: absolute; left: 50px; bottom: -20px;" />
+				<div style="border-bottom: 1px solid black; width: 180px; position: absolute; left: 30px; bottom: 0;"></div>
 			</div>
 			
 			<!-- Buyer Signature -->
-			<div style="width: 33.333%; float: left; text-align: center;">
-				<div style="border-bottom: 1px solid black; width: 150px; margin: 0 auto; height: 30px;">
-					<img src="<?= $transaction[0]->b_signature ?>" style="width: 150px; height: 30px; display: block;" />
-				</div>
+			<div style="width: 33.333%; height: 120px; float: left; position: relative;">
+				<label for="" style="position: absolute; top: 0; left: 0; font-weight: bold; width: 100%; text-align: center;">Unterschrift des Käufers</label>
+				<img src="<?= $transaction[0]->b_signature ?>" style="height: 70px; position: absolute; left: 50px; bottom: -20px;" />
+				<div style="border-bottom: 1px solid black; width: 180px; position: absolute; left: 30px; bottom: 0;"></div>
 			</div>
 		</div>
 	</div>
