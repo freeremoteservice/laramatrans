@@ -1,7 +1,7 @@
 <!-- Hero Section -->
 <section class="hero" id="home">
     <div class="container">
-        <h1 class="fade-in-up">TrustAuto GmbH – Ihr Partner für sicheren Autokauf</h1>
+        <h1 class="fade-in-up"><?= WEBSITE_NAME ?> – Ihr Partner für sicheren Autokauf</h1>
         <p class="fade-in-up delay-1">Als professioneller Treuhanddienstleister bieten wir Ihnen maximale Sicherheit beim Fahrzeugkauf mit persönlichem Berater – von der Auswahl bis zur Übergabe. <strong>Inklusive 14-tägiger Testphase mit kostenloser Rückgabe!</strong></p>
         <div class="btn-container fade-in-up delay-2">
             <a href="#contact" class="btn">Kostenlose Erstberatung</a>
@@ -65,6 +65,108 @@
                 <div class="step-number">4</div>
                 <h3 class="step-title">Lieferung & Testphase</h3>
                 <p>Professioneller Transport und persönliche Übergabe. <strong>Plus 14 Tage Testphase mit kostenloser Rückgabegarantie!</strong></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How it works Section -->
+<section id="how-it-works">
+    <div class="container">
+        <div class="section-title">
+            <h2 class="fade-in-up">So funktioniert unser Treuhandservice</h2>
+            <p class="fade-in-up delay-1">Ein einfacher und sicherer Prozess für Käufer und Verkäufer</p>
+        </div>
+        
+        <div class="advisor-highlight fade-in">
+            <div class="advisor-container">
+                <div class="advisor-image">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Ray Donovan - Ihr persönlicher Berater" class="advisor-photo">
+                    <div class="advisor-name">Ray Donovan</div>
+                    <div class="advisor-title">Senior Auto Trading Consultant</div>
+                </div>
+                <div class="advisor-info">
+                    <h3><i class="fas fa-user-tie"></i> Persönlicher Berater für jeden Auftrag</h3>
+                    <p>Bei <?= WEBSITE_NAME ?> wird jedem Kunden ein persönlicher Berater zugewiesen, der Sie vom ersten Kontakt bis zur erfolgreichen Übergabe des Fahrzeugs begleitet. Ray Donovan steht Ihnen als erfahrener Auto Trading Consultant zur Seite, koordiniert alle Schritte, beantwortet Ihre Fragen und stellt sicher, dass Ihr Fahrzeugkauf reibungslos verläuft.</p>
+                    
+                    <div class="iban-notice">
+                        <p>
+                            <strong>Sicherer Zahlungsverkehr:</strong> Jedem unserer Berater wird durch die <?= WEBSITE_NAME ?> eine persönliche IBAN zugewiesen.
+                            Bitte verwenden Sie für alle Zahlungen ausschließlich die IBAN und den Namen Ihres persönlichen Beraters.
+                            So stellen wir einen reibungslosen Ablauf sicher – zu Ihrer und unserer Sicherheit.
+                            Ihr persönlicher Berater begleitet Sie vom ersten Tag Ihres Auftrags bis zur persönlichen Fahrzeugübergabe und steht Ihnen jederzeit für Fragen zur Verfügung.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="steps">
+            <div class="step fade-in">
+                <div class="step-number">1</div>
+                <div class="step-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3>Kontakt & Vereinbarung</h3>
+                <p>Käufer und Verkäufer vereinbaren den Kauf und schalten <?= WEBSITE_NAME ?> als Treuhänder ein. Sie erhalten Ihren persönlichen Berater.</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-number">2</div>
+                <div class="step-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <h3>Vorab-Check</h3>
+                <p>Der Käufer bespricht mit Ihrem persönlichen Berater telefonisch den Sollzustand des Fahrzeugs.</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-number">3</div>
+                <div class="step-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>Prüfung & Zahlung</h3>
+                <p>Kaufpreis geht auf das Treuhandkonto (persönliche IBAN Ihres Beraters). Wir prüfen das Fahrzeug vor Ort. Ihr Berater hält Sie auf dem Laufenden.</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-number">4</div>
+                <div class="step-icon">
+                    <i class="fas fa-truck-loading"></i>
+                </div>
+                <h3>Transport & Freigabe</h3>
+                <p>Fahrzeug wird geliefert. Käufer hat 7 Tage Prüfzeit vor Geldtransfer an Verkäufer. Ihr Berater koordiniert alles.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Benefits Section -->
+<section class="benefits" id="benefits">
+    <div class="benefits-bg"></div>
+    <div class="container">
+        <div class="section-title">
+            <h2 class="fade-in-up">Ihre Vorteile mit <?= WEBSITE_NAME ?></h2>
+            <p class="fade-in-up delay-1">Sicher, zuverlässig und praktisch für beide Parteien</p>
+        </div>
+        <div class="benefit-cards">
+            <div class="benefit-card fade-in">
+                <h3><i class="fas fa-user-shield"></i> Für Käufer</h3>
+                <ul>
+                    <li>Schutz vor Betrug und nicht gelieferten Fahrzeugen</li>
+                    <li>Keine "Katze im Sack" - Vorab-Inspektion durch Experten</li>
+                    <li>7-tägige Prüfzeit nach Erhalt des Fahrzeugs</li>
+                    <li>Kostenkontrolle bei mangelhaften Fahrzeugen</li>
+                    <li>Sichere Zahlung über Treuhandkonto</li>
+                    <li><strong>Persönlicher Berater für den gesamten Prozess</strong></li>
+                </ul>
+            </div>
+            <div class="benefit-card fade-in">
+                <h3><i class="fas fa-store"></i> Für Verkäufer</h3>
+                <ul>
+                    <li>Schutz vor Scheinkäufern und Betrug</li>
+                    <li>Garantierte Zahlung nach Ablauf der Prüffrist</li>
+                    <li>Attraktives Angebot für nationale und internationale Kunden</li>
+                    <li>Professioneller Transportservice inklusive</li>
+                    <li><strong>Persönlicher Berater für reibungslosen Verkauf</strong></li>
+                </ul>
             </div>
         </div>
     </div>
@@ -223,7 +325,7 @@
                     <i class="fas fa-star"></i>
                 </div>
                 <div class="review-text">
-                    "TrustAuto hat meinen BMW X5 von Ramstein aus verkauft, während ich bereits zurück in den USA war. Der Prozess war reibungslos und die Kommunikation ausgezeichnet. Das Geld war innerhalb von 3 Tagen auf meinem Konto. Absolut empfehlenswert für Soldaten, die ihr Auto verkaufen müssen!"
+                    "<?= WEBSITE_NAME ?> hat meinen BMW X5 von Ramstein aus verkauft, während ich bereits zurück in den USA war. Der Prozess war reibungslos und die Kommunikation ausgezeichnet. Das Geld war innerhalb von 3 Tagen auf meinem Konto. Absolut empfehlenswert für Soldaten, die ihr Auto verkaufen müssen!"
                 </div>
             </div>
             
@@ -243,7 +345,7 @@
                     <i class="fas fa-star"></i>
                 </div>
                 <div class="review-text">
-                    "Die 14-tägige Testphase hat mir die Sicherheit gegeben, die ich brauchte. Habe den Mercedes eine Woche lang getestet und war vollkommen zufrieden. Sollte ich jemals wieder ein Auto kaufen, nur über TrustAuto!"
+                    "Die 14-tägige Testphase hat mir die Sicherheit gegeben, die ich brauchte. Habe den Mercedes eine Woche lang getestet und war vollkommen zufrieden. Sollte ich jemals wieder ein Auto kaufen, nur über <?= WEBSITE_NAME ?>!"
                 </div>
             </div>
             
@@ -263,7 +365,7 @@
                     <i class="fas fa-star"></i>
                 </div>
                 <div class="review-text">
-                    "Perfekter Service! Habe mein Auto über TrustAuto verkauft, nachdem ich versetzt wurde. Der persönliche Berater hat alles organisiert - von der Abholung in Ramstein bis zur vollständigen Abwicklung. Kein Stress, kein Papierkram, einfach professionell. Vielen Dank!"
+                    "Perfekter Service! Habe mein Auto über <?= WEBSITE_NAME ?> verkauft, nachdem ich versetzt wurde. Der persönliche Berater hat alles organisiert - von der Abholung in Ramstein bis zur vollständigen Abwicklung. Kein Stress, kein Papierkram, einfach professionell. Vielen Dank!"
                 </div>
             </div>
             
@@ -283,7 +385,7 @@
                     <i class="fas fa-star"></i>
                 </div>
                 <div class="review-text">
-                    "Als ich unerwartet versetzt wurde, dachte ich, ich müsste mein Auto unter Wert verkaufen. TrustAuto hat mir den besten Preis besorgt und alles abgewickelt, während ich schon in Texas war. Besonders beeindruckt hat mich die transparente Kommunikation über den gesamten Prozess."
+                    "Als ich unerwartet versetzt wurde, dachte ich, ich müsste mein Auto unter Wert verkaufen. <?= WEBSITE_NAME ?> hat mir den besten Preis besorgt und alles abgewickelt, während ich schon in Texas war. Besonders beeindruckt hat mich die transparente Kommunikation über den gesamten Prozess."
                 </div>
             </div>
         </div>
@@ -299,7 +401,7 @@
         </div>
         
         <div class="tracking-container fade-in-up">
-            <p>Als TrustAuto GmbH bieten wir Ihnen vollständige Transparenz über jeden Schritt des Transportprozesses - von der Abholung bis zur Lieferung direkt zu Ihnen.</p>
+            <p>Als <?= WEBSITE_NAME ?> bieten wir Ihnen vollständige Transparenz über jeden Schritt des Transportprozesses - von der Abholung bis zur Lieferung direkt zu Ihnen.</p>
             
             <div class="tracking-form">
                 <div class="form-group">
@@ -310,7 +412,7 @@
                 
                 <div class="checkbox-group">
                     <input type="checkbox" id="agree-terms">
-                    <label for="agree-terms">Ich akzeptiere die <a href="#">AGB der TrustAuto GmbH</a></label>
+                    <label for="agree-terms">Ich akzeptiere die <a href="#">AGB der <?= WEBSITE_NAME ?></a></label>
                 </div>
                 
                 <button class="btn" id="track-btn">Status abfragen</button>
@@ -319,8 +421,8 @@
             <div class="business-contact">
                 <h3>Persönlicher Support</h3>
                 <p>Ihr persönlicher Berater steht Ihnen für Rückfragen jederzeit zur Verfügung. Kontaktieren Sie uns für eine individuelle Beratung - auch zur 14-tägigen Testphase.</p>
-                <p>TrustAuto GmbH – Ihr zuverlässiger Partner für sicheren Autokauf.</p>
-                <a href="mailto:service@trustauto-gmbh.de" class="btn btn-secondary">Berater kontaktieren</a>
+                <p><?= WEBSITE_NAME ?> – Ihr zuverlässiger Partner für sicheren Autokauf.</p>
+                <a href="mailto:<?= WEBSITE_EMAIL ?>" class="btn btn-secondary">Berater kontaktieren</a>
             </div>
         </div>
     </div>
@@ -336,7 +438,7 @@
         
         <div class="faq-container">
             <div class="faq-item fade-in-up">
-                <div class="faq-question">Welche Vorteile bietet die TrustAuto GmbH als Unternehmen?</div>
+                <div class="faq-question">Welche Vorteile bietet die <?= WEBSITE_NAME ?> als Unternehmen?</div>
                 <div class="faq-answer">
                     <p>Als GmbH handeln wir mit der gebotenen rechtlichen Sorgfalt und unterliegen strengen Compliance-Richtlinien. Dies bietet Ihnen maximale Sicherheit und Verlässlichkeit. Zudem verfügen wir über zertifizierte Prozesse und versicherte Services.</p>
                 </div>
@@ -371,7 +473,7 @@
     <div class="container">
         <h2 class="fade-in-up">Starten Sie Ihren sicheren Autokauf</h2>
         <p class="fade-in-up delay-1">Vereinbaren Sie ein unverbindliches Beratungsgespräch mit unserem Expertenteam. Wir zeigen Ihnen, wie Sie von unseren professionellen Services profitieren - inklusive 14-tägiger Testphase mit kostenloser Rückgabe.</p>
-        <a href="mailto:kontakt@trustauto-gmbh.de" class="cta-btn fade-in-up delay-2">Jetzt Termin vereinbaren</a>
+        <a href="mailto:<?= WEBSITE_EMAIL ?>" class="cta-btn fade-in-up delay-2">Jetzt Termin vereinbaren</a>
     </div>
 </section>
 

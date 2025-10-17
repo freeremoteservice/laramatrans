@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo isset($title) ? $title : 'TrustAuto GmbH - Sicherer Autokauf mit persönlichem Berater'; ?></title>
+    <title><?php echo isset($title) ? $title : 'Larama Transport & Trust GmbH'; ?></title>
     <link rel="icon" type="image/x-icon" href="<?php echo base_url('public/img/favicon.ico'); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- External CSS for Landing Page -->
@@ -19,7 +19,7 @@
     <header style="padding: 5px 0;">
         <div class="container header-container">
             <div class="logo">
-                <img src="<?php echo base_url('public/img/logo.png'); ?>" alt="TrustAuto GmbH" style="height: 68px;">
+                <img src="<?php echo base_url('public/img/logo.png'); ?>" alt="Larama Transport & Trust GmbH" style="height: 68px;">
             </div>
             <?php if (isset($show_full_nav) && $show_full_nav): ?>
                 <!-- Full Navigation for Landing Page -->
@@ -27,8 +27,10 @@
                 <nav id="mainNav">
                     <ul>
                         <li><a href="#home" class="nav-link active">Startseite</a></li>
-                        <li><a href="#services" class="nav-link">Leistungen</a></li>
                         <li><a href="#process" class="nav-link">Prozess</a></li>
+                        <li><a href="#how-it-works" class="nav-link">So funktioniert's</a></li>
+                        <li><a href="#benefits" class="nav-link">Vorteile</a></li>
+                        <li><a href="#services" class="nav-link">Leistungen</a></li>
                         <li><a href="#specialization" class="nav-link">Transport-Services</a></li>
                         <li><a href="#reviews" class="nav-link">Bewertungen</a></li>
                         <li><a href="#tracking" class="nav-link">Sendungsverfolgung</a></li>
@@ -109,7 +111,7 @@
         <footer class="footer-simple">
             <div class="container">
                 <div class="footer-bottom">
-                    <p>&copy; 2023 TrustAuto GmbH. Alle Rechte vorbehalten.</p>
+                    <p>&copy; 2025 <?= WEBSITE_NAME ?>. Alle Rechte vorbehalten.</p>
                     <p><a href="<?php echo base_url(); ?>">Zurück zur Startseite</a></p>
                 </div>
             </div>

@@ -540,7 +540,7 @@ class Action extends CI_Controller
             
             // Show success message on step 1
             $data['transaction'] = $currentTransaction;
-            $data['title'] = 'Transaktion abgelehnt - ' . $currentTransaction[0]->reference . ' | TrustAuto GmbH';
+            $data['title'] = 'Transaktion abgelehnt - ' . $currentTransaction[0]->reference . ' | ' . WEBSITE_NAME;
             $data['mainContent'] = 'transaction/step1_content';
             $data['additional_css'] = array('public/css/tracking.css');
             $data['additional_js'] = array('public/js/step1-pin-modal.js');
@@ -554,7 +554,7 @@ class Action extends CI_Controller
             if (!isset($pin) || $currentPIN != $pin) {
                 // Wrong PIN - show step 1 again with error
                 $data['transaction'] = $currentTransaction;
-                $data['title'] = 'Transaktionsdetails - ' . $currentTransaction[0]->reference . ' | TrustAuto GmbH';
+                $data['title'] = 'Transaktionsdetails - ' . $currentTransaction[0]->reference . ' | ' . WEBSITE_NAME;
                 $data['mainContent'] = 'transaction/step1_content';
                 $data['additional_css'] = array('public/css/tracking.css');
                 $data['additional_js'] = array('public/js/step1-pin-modal.js');
@@ -566,7 +566,7 @@ class Action extends CI_Controller
             // PIN is correct - go to step 2 (delivery form)
             $data['transaction'] = $currentTransaction;
             $data['verified_pin'] = $pin;
-            $data['title'] = 'Lieferadresse - ' . $currentTransaction[0]->reference . ' | TrustAuto GmbH';
+            $data['title'] = 'Lieferadresse - ' . $currentTransaction[0]->reference . ' | ' . WEBSITE_NAME;
             $data['mainContent'] = 'transaction/step2_content';
             $data['additional_css'] = array('public/css/tracking.css');
             $data['additional_js'] = array('public/js/signature-pad.js');
@@ -988,7 +988,7 @@ class Action extends CI_Controller
 
                 // Show step 1 (transaction details) directly with landing style
                 $data['transaction'] = $transaction;
-                $data['title'] = 'Transaktionsdetails - ' . $transaction[0]->reference . ' | TrustAuto GmbH';
+                $data['title'] = 'Transaktionsdetails - ' . $transaction[0]->reference . ' | ' . WEBSITE_NAME;
                 $data['mainContent'] = 'transaction/step1_content';
                 $data['additional_css'] = array('public/css/tracking.css');
                 $data['additional_js'] = array('public/js/step1-pin-modal.js');
@@ -1049,7 +1049,7 @@ class Action extends CI_Controller
                 $transaction = $this->transaction_model->get_transaction($_POST["reference"]);
                 $data['transaction'] = $transaction;
                 $data['error_message'] = 'Bitte füllen Sie alle Pflichtfelder aus, einschließlich der Unterschrift.';
-                $data['title'] = 'Lieferadresse - ' . $transaction[0]->reference . ' | TrustAuto GmbH';
+                $data['title'] = 'Lieferadresse - ' . $transaction[0]->reference . ' | ' . WEBSITE_NAME;
                 $data['mainContent'] = 'transaction/step2_content';
                 $data['additional_css'] = array('public/css/tracking.css');
                 $data['additional_js'] = array('public/js/signature-pad.js');
@@ -1110,7 +1110,7 @@ class Action extends CI_Controller
         }
 
         // Show step 3 (confirmation page) with landing style
-        $data['title'] = 'Zahlungsbestätigung - ' . $transaction[0]->reference . ' | TrustAuto GmbH';
+        $data['title'] = 'Zahlungsbestätigung - ' . $transaction[0]->reference . ' | ' . WEBSITE_NAME;
         $data['mainContent'] = 'transaction/step3_content';
         $data['additional_css'] = array('public/css/tracking.css');
         $this->load->view('layout/landing_template', $data);
@@ -1129,7 +1129,7 @@ class Action extends CI_Controller
 
         // Show final transaction view with landing style
         $data["transaction"] = $transaction;
-        $data['title'] = 'Transaktion ' . $transaction[0]->reference . ' | TrustAuto GmbH';
+        $data['title'] = 'Transaktion ' . $transaction[0]->reference . ' | ' . WEBSITE_NAME;
         $data['mainContent'] = 'transaction/view_content';
         $data['additional_css'] = array('public/css/tracking.css');
         

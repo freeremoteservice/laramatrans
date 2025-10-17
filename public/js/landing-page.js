@@ -71,7 +71,7 @@ document.getElementById('track-btn').addEventListener('click', function() {
     }
     
     if (!agreeTerms) {
-        alert('Bitte akzeptieren Sie die AGB der TrustAuto GmbH.');
+        alert('Bitte akzeptieren Sie die AGB der Larama Transport & Trust GmbH.');
         return;
     }
     

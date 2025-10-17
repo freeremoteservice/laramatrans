@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //define('SITE_URL', '');
 define('SITE_URL', 'http://localhost/');
 define('SITE_URL_ALIAS', 'laramatrans.de');
-define('WEBSITE_NAME', 'Larama Transport Service GmbH');
+define('WEBSITE_NAME', 'Larama Transport & Trust GmbH');
 define('WEBSITE_ADDRESS', 'Heilbronner Str. 150, 70191 Stuttgart, Deutschland');
 define('WEBSITE_ADDRESS_1', 'Heilbronner Str. 150');
 define('WEBSITE_ADDRESS_2', 'D-70191 Stuttgart');
