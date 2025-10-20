@@ -130,6 +130,204 @@
             <script src="<?php echo base_url($js_file); ?>"></script>
         <?php endforeach; ?>
     <?php endif; ?>
+
+    <!-- Cookie Consent Popup -->
+    <div id="cookieConsent" class="cookie-consent" style="display: none;">
+        <div class="cookie-content">
+            <div class="cookie-icon">
+                <i class="fas fa-cookie-bite"></i>
+            </div>
+            <div class="cookie-text">
+                <h4>Cookie-Einstellungen</h4>
+                <p>Wir verwenden Cookies, um Ihnen die beste Erfahrung auf unserer Website zu bieten. Einige Cookies sind notwendig für die Funktionalität der Website, andere helfen uns, diese Website und Ihre Erfahrung zu verbessern.</p>
+            </div>
+            <div class="cookie-actions">
+                <button id="cookieDecline" class="cookie-btn cookie-btn-secondary">Ablehnen</button>
+                <button id="cookieAccept" class="cookie-btn cookie-btn-primary">Alle akzeptieren</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .cookie-consent {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            border-top: 1px solid rgba(79, 195, 247, 0.3);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            padding: 1.5rem;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.3);
+            transform: translateY(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .cookie-consent.show {
+            transform: translateY(0);
+        }
+
+        .cookie-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .cookie-icon {
+            flex-shrink: 0;
+        }
+
+        .cookie-icon i {
+            font-size: 2rem;
+            color: #4fc3f7;
+        }
+
+        .cookie-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .cookie-text h4 {
+            color: #ffffff;
+            margin: 0 0 0.5rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .cookie-text p {
+            color: #e8f4fd;
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .cookie-actions {
+            display: flex;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .cookie-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        .cookie-btn-primary {
+            background: linear-gradient(135deg, #4fc3f7, #29b6f6);
+            color: #ffffff;
+        }
+
+        .cookie-btn-primary:hover {
+            background: linear-gradient(135deg, #29b6f6, #0288d1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(79, 195, 247, 0.4);
+        }
+
+        .cookie-btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: #e8f4fd;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .cookie-btn-secondary:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .cookie-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .cookie-text {
+                min-width: auto;
+            }
+
+            .cookie-actions {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .cookie-btn {
+                flex: 1;
+                max-width: 150px;
+            }
+        }
+    </style>
+
+    <script>
+        // Cookie Consent Management
+        document.addEventListener('DOMContentLoaded', function() {
+            const cookieConsent = document.getElementById('cookieConsent');
+            const acceptBtn = document.getElementById('cookieAccept');
+            const declineBtn = document.getElementById('cookieDecline');
+
+            // Check if user has already made a choice
+            if (!localStorage.getItem('cookieConsent')) {
+                // Show popup after a short delay
+                setTimeout(() => {
+                    cookieConsent.style.display = 'block';
+                    setTimeout(() => {
+                        cookieConsent.classList.add('show');
+                    }, 100);
+                }, 1000);
+            }
+
+            // Accept cookies
+            acceptBtn.addEventListener('click', function() {
+                localStorage.setItem('cookieConsent', 'accepted');
+                hideCookieConsent();
+                // Enable all cookies/analytics here
+                console.log('Cookies accepted');
+            });
+
+            // Decline cookies
+            declineBtn.addEventListener('click', function() {
+                localStorage.setItem('cookieConsent', 'declined');
+                hideCookieConsent();
+                // Disable non-essential cookies here
+                console.log('Cookies declined');
+            });
+
+            function hideCookieConsent() {
+                cookieConsent.classList.remove('show');
+                setTimeout(() => {
+                    cookieConsent.style.display = 'none';
+                }, 300);
+            }
+
+            // Optional: Show cookie settings on privacy policy page
+            if (window.location.pathname.includes('privacy_policy')) {
+                const showSettingsBtn = document.createElement('button');
+                showSettingsBtn.textContent = 'Cookie-Einstellungen';
+                showSettingsBtn.className = 'cookie-btn cookie-btn-secondary';
+                showSettingsBtn.style.marginTop = '1rem';
+                showSettingsBtn.addEventListener('click', function() {
+                    localStorage.removeItem('cookieConsent');
+                    cookieConsent.style.display = 'block';
+                    cookieConsent.classList.add('show');
+                });
+                
+                // Add to privacy policy page if it exists
+                const privacyContent = document.querySelector('.privacy-body');
+                if (privacyContent) {
+                    privacyContent.appendChild(showSettingsBtn);
+                }
+            }
+        });
+    </script>
 </body>
 </html>
 
