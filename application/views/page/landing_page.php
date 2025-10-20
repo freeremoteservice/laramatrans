@@ -30,46 +30,6 @@
     </div>
 </section>
 
-<!-- Trust Section -->
-<section class="trust-section" id="process">
-    <div class="container">
-        <div class="section-title">
-            <h2 class="fade-in-up">Unser 4-Stufen-Prozess</h2>
-            <p class="fade-in-up delay-1">Durch unser strukturiertes Vorgehen garantieren wir Ihnen einen sicheren und transparenten Fahrzeugkauf.</p>
-        </div>
-        
-        <div class="trust-process">
-            <div class="process-step fade-in-up">
-                <div class="advisor-badge">Mit Berater</div>
-                <div class="step-number">1</div>
-                <h3 class="step-title">Beratung & Auswahl</h3>
-                <p>Ihr persönlicher Berater analysiert Ihre Anforderungen und unterstützt bei der Fahrzeugauswahl.</p>
-            </div>
-            
-            <div class="process-step fade-in-up delay-1">
-                <div class="advisor-badge">Mit Berater</div>
-                <div class="step-number">2</div>
-                <h3 class="step-title">Kaufabwicklung</h3>
-                <p>Professionelle Verhandlungen, Vertragsprüfung und sichere Dokumentenabwicklung.</p>
-            </div>
-            
-            <div class="process-step fade-in-up delay-2">
-                <div class="advisor-badge">Mit Berater</div>
-                <div class="step-number">3</div>
-                <h3 class="step-title">Qualitätssicherung</h3>
-                <p>Umfassende Fahrzeugprüfung und überwachte Zahlungsabwicklung über unser Treuhandkonto.</p>
-            </div>
-            
-            <div class="process-step fade-in-up delay-3">
-                <div class="advisor-badge">Mit Berater</div>
-                <div class="step-number">4</div>
-                <h3 class="step-title">Lieferung & Testphase</h3>
-                <p>Professioneller Transport und persönliche Übergabe. <strong>Plus 14 Tage Testphase mit kostenloser Rückgabegarantie!</strong></p>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- How it works Section -->
 <section id="how-it-works">
     <div class="container">
@@ -81,13 +41,11 @@
         <div class="advisor-highlight fade-in">
             <div class="advisor-container">
                 <div class="advisor-image">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Ray Donovan - Ihr persönlicher Berater" class="advisor-photo">
-                    <div class="advisor-name">Ray Donovan</div>
-                    <div class="advisor-title">Senior Auto Trading Consultant</div>
+                    <img src="<?= base_url('public/img/manager.png'); ?>" alt="Ray Donovan - Ihr persönlicher Berater" class="advisor-photo">
                 </div>
                 <div class="advisor-info">
                     <h3><i class="fas fa-user-tie"></i> Persönlicher Berater für jeden Auftrag</h3>
-                    <p>Bei <?= WEBSITE_NAME ?> wird jedem Kunden ein persönlicher Berater zugewiesen, der Sie vom ersten Kontakt bis zur erfolgreichen Übergabe des Fahrzeugs begleitet. Ray Donovan steht Ihnen als erfahrener Auto Trading Consultant zur Seite, koordiniert alle Schritte, beantwortet Ihre Fragen und stellt sicher, dass Ihr Fahrzeugkauf reibungslos verläuft.</p>
+                    <p>Bei <?= WEBSITE_NAME ?> wird jedem Kunden ein persönlicher Berater zugewiesen, der Sie vom ersten Kontakt bis zur erfolgreichen Übergabe des Fahrzeugs begleitet. </p>
                     
                     <div class="iban-notice">
                         <p>
@@ -159,7 +117,7 @@
                 </ul>
             </div>
             <div class="benefit-card fade-in">
-                <h3><i class="fas fa-store"></i> Für Verkäufer</h3>
+                <h3><i class="fas fa-user-shield"></i> Für Verkäufer</h3>
                 <ul>
                     <li>Schutz vor Scheinkäufern und Betrug</li>
                     <li>Garantierte Zahlung nach Ablauf der Prüffrist</li>
@@ -290,10 +248,6 @@
                     </div>
                 </div>
                 
-                <div class="certification-note fade-in-up delay-3">
-                    <p><strong>Hinweis:</strong> Wir sind auch für spezielle Transportanforderungen zertifiziert, inklusive Fahrzeuglieferungen von und zu US-Stützpunkten mit direkter Zustellung zu Privatpersonen.</p>
-                </div>
-                
                 <a href="#contact" class="btn fade-in-up delay-3" style="margin-top: 3rem;">Transport anfragen</a>
             </div>
         </div>
@@ -311,10 +265,8 @@
         <div class="reviews-grid">
             <div class="review-card fade-in-up">
                 <div class="review-header">
-                    <div class="review-avatar">MJ</div>
                     <div class="review-info">
-                        <h4>Mike Johnson <span class="us-army-badge">US Army</span></h4>
-                        <p>Ramstein Air Base</p>
+                        <h4>Mike Johnson</h4>
                     </div>
                 </div>
                 <div class="review-stars">
@@ -331,10 +283,8 @@
             
             <div class="review-card fade-in-up delay-1">
                 <div class="review-header">
-                    <div class="review-avatar">AK</div>
                     <div class="review-info">
                         <h4>Anna Keller</h4>
-                        <p>Hamburg</p>
                     </div>
                 </div>
                 <div class="review-stars">
@@ -351,10 +301,8 @@
             
             <div class="review-card fade-in-up delay-2">
                 <div class="review-header">
-                    <div class="review-avatar">SW</div>
                     <div class="review-info">
-                        <h4>Sarah Williams <span class="us-army-badge">US Army</span></h4>
-                        <p>Ehemals stationiert in Kaiserslautern</p>
+                        <h4>Sarah Williams</h4>
                     </div>
                 </div>
                 <div class="review-stars">
@@ -371,10 +319,44 @@
             
             <div class="review-card fade-in-up delay-3">
                 <div class="review-header">
-                    <div class="review-avatar">JM</div>
                     <div class="review-info">
-                        <h4>James Miller <span class="us-army-badge">US Army</span></h4>
-                        <p>Ehemals Ramstein Air Base</p>
+                        <h4>James Miller</h4>
+                    </div>
+                </div>
+                <div class="review-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="review-text">
+                    "Als ich unerwartet versetzt wurde, dachte ich, ich müsste mein Auto unter Wert verkaufen. <?= WEBSITE_NAME ?> hat mir den besten Preis besorgt und alles abgewickelt, während ich schon in Texas war. Besonders beeindruckt hat mich die transparente Kommunikation über den gesamten Prozess."
+                </div>
+            </div>
+
+            <div class="review-card fade-in-up delay-4">
+                <div class="review-header">
+                    <div class="review-info">
+                        <h4>James Miller</h4>
+                    </div>
+                </div>
+                <div class="review-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="review-text">
+                    "Als ich unerwartet versetzt wurde, dachte ich, ich müsste mein Auto unter Wert verkaufen. <?= WEBSITE_NAME ?> hat mir den besten Preis besorgt und alles abgewickelt, während ich schon in Texas war. Besonders beeindruckt hat mich die transparente Kommunikation über den gesamten Prozess."
+                </div>
+            </div>
+
+            <div class="review-card fade-in-up delay-5">
+                <div class="review-header">
+                    <div class="review-info">
+                        <h4>James Miller</h4>
                     </div>
                 </div>
                 <div class="review-stars">
@@ -412,7 +394,7 @@
                 
                 <div class="checkbox-group">
                     <input type="checkbox" id="agree-terms">
-                    <label for="agree-terms">Ich akzeptiere die <a href="#">AGB der <?= WEBSITE_NAME ?></a></label>
+                    <label for="agree-terms">Ich akzeptiere die <a href="<?= base_url('site/terms_and_conditions') ?>" target="_blank">AGB der <?= WEBSITE_NAME ?></a></label>
                 </div>
                 
                 <button class="btn" id="track-btn">Status abfragen</button>

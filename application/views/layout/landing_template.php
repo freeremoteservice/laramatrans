@@ -16,10 +16,10 @@
 </head>
 <body>
     <!-- Header -->
-    <header style="padding: 5px 0;">
+    <header style="padding: 10px 0;">
         <div class="container header-container">
             <div class="logo">
-                <img src="<?php echo base_url('public/img/logo.png'); ?>" alt="Larama Transport & Trust GmbH" style="height: 68px;">
+                <img src="<?php echo base_url('public/img/logo.png'); ?>" alt="<?= WEBSITE_NAME; ?>" style="height: 50px;">
             </div>
             <?php if (isset($show_full_nav) && $show_full_nav): ?>
                 <!-- Full Navigation for Landing Page -->
@@ -27,12 +27,10 @@
                 <nav id="mainNav">
                     <ul>
                         <li><a href="#home" class="nav-link active">Startseite</a></li>
-                        <li><a href="#process" class="nav-link">Prozess</a></li>
                         <li><a href="#how-it-works" class="nav-link">So funktioniert's</a></li>
                         <li><a href="#benefits" class="nav-link">Vorteile</a></li>
                         <li><a href="#services" class="nav-link">Leistungen</a></li>
-                        <li><a href="#specialization" class="nav-link">Transport-Services</a></li>
-                        <li><a href="#reviews" class="nav-link">Bewertungen</a></li>
+                        <li><a href="#specialization" class="nav-link">Transport</a></li>
                         <li><a href="#tracking" class="nav-link">Sendungsverfolgung</a></li>
                         <li><a href="#faq" class="nav-link">FAQ</a></li>
                         <li><a href="#contact" class="nav-link">Kontakt</a></li>
