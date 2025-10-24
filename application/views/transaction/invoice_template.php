@@ -96,7 +96,7 @@
 <div id="page_1">
 	<div class="header">
 		<div style="text-align: right">
-			<img src="<?= base_url('public/img/logo-invoice.png'); ?>" style="width: 100px;" />
+			<img src="<?= base_url('public/img/logo-invoice.png'); ?>" style="width: 150px;" />
 		</div>
 		<div>
 			<img src="<?= base_url('public/img/invoice-header.png'); ?>" style="width: 100%;" />
