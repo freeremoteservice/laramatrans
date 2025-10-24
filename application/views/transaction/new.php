@@ -179,6 +179,24 @@ if ($this->session->userdata('role') == 'Admin') {
             <hr>
             <?php echo form_fieldset('Bank Details:', array('class' => 'transaction_details')); ?>
             
+            <?php if ($this->session->userdata('role') == 'Admin') : ?>
+            <label for="email_template">Email & Invoice Template</label>
+            <div class="form-select p-0">
+                <?php
+                $attributes = array(
+                    'id' => 'email_template',
+                    'name' => 'email_template',
+                    'required' => '',
+                );
+
+                $options = array(
+                    'default' => 'Default Template',
+                    'template_2' => 'Second Template'
+                );
+                echo form_dropdown($attributes, $options); ?>
+            </div>
+            <?php endif; ?>
+            
             <label for="b_detail_1">Account Owner</label>
             <div class="form-select p-0">
                 <?php

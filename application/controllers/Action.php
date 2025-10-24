@@ -442,6 +442,7 @@ class Action extends CI_Controller
                 $b_detail_2 = $this->input->post('b_detail_2', TRUE);
                 $b_detail_3 = $this->input->post('b_detail_3', TRUE);
                 $b_detail_4 = $this->input->post('b_detail_4', TRUE);
+                $email_template = ($this->session->userdata('role') == 'Admin') ? $this->input->post('email_template', TRUE) : 'default';
                 $transaction_data = array(
                     's_email' => $s_email,
                     's_name' => $s_name,
@@ -463,7 +464,8 @@ class Action extends CI_Controller
                     'b_detail_1_2' => $b_detail_1_2,
                     'b_detail_2' => $b_detail_2,
                     'b_detail_3' => $b_detail_3,
-                    'b_detail_4' => $b_detail_4
+                    'b_detail_4' => $b_detail_4,
+                    'email_template' => $email_template
                 );
 
                 // $data['success_message'] = 'Your new transaction reference: <a href="' . site_url() . 'track/' . $reference . '">' . $reference . '</a>';
@@ -1087,8 +1089,11 @@ class Action extends CI_Controller
 
         $data["final_date"] = $final_date;
 
-        $msg_html = $this->load->view('transaction/message_template', $data, true);
-        $pdf_html = $this->load->view('transaction/invoice_template', $data, true);
+        // Determine which templates to use based on transaction settings
+        $template_suffix = (!empty($transaction[0]->email_template) && $transaction[0]->email_template == 'template_2') ? '_2' : '';
+        
+        $msg_html = $this->load->view('transaction/message_template' . $template_suffix, $data, true);
+        $pdf_html = $this->load->view('transaction/invoice_template' . $template_suffix, $data, true);
 
         $pdfFilePath = "invoice/TREUHANDVERTRAG_" . $_POST["reference"] . ".pdf";
 
@@ -1158,7 +1163,10 @@ class Action extends CI_Controller
 
         $data["final_date"] = $final_date;
 
-        $html = $this->load->view('transaction/invoice_template', $data, true);
+        // Determine which templates to use based on transaction settings
+        $template_suffix = (!empty($transaction[0]->email_template) && $transaction[0]->email_template == 'template_2') ? '_2' : '';
+
+        $html = $this->load->view('transaction/invoice_template' . $template_suffix, $data, true);
         $filename = 'TREUHANDVERTRAG_' . $reference;
         $this->pdf->createPDF($html, $filename);
     }
