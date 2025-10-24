@@ -19,7 +19,7 @@ define('WEBSITE_ADDRESS_1', 'Heilbronner Str. 150');
 define('WEBSITE_ADDRESS_2', 'D-70191 Stuttgart');
 define('WEBSITE_ADDRESS_3', 'Deutschland');
 define('COMPANY_VAT_NUMBER', 'DE268831826');
-define('WEBSITE_PHONE', '+4932212243833');
+define('WEBSITE_PHONE', '+4989381691088');
 define('WEBSITE_EMAIL', 'info@laramatrans.de');
 define('HASH_KEY', 'numeleAplicatiei');
 

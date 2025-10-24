@@ -5,7 +5,7 @@
         <p class="fade-in-up delay-1">Als professioneller Treuhanddienstleister bieten wir Ihnen maximale Sicherheit beim Fahrzeugkauf mit persönlichem Berater – von der Auswahl bis zur Übergabe. <strong>Inklusive 14-tägiger Testphase mit kostenloser Rückgabe!</strong></p>
         <div class="btn-container fade-in-up delay-2">
             <a href="#contact" class="btn">Kostenlose Erstberatung</a>
-            <a href="#process" class="btn btn-secondary">Unser Prozess</a>
+            <a href="#how-it-works" class="btn btn-secondary">Unser Prozess</a>
         </div>
     </div>
 </section>
@@ -42,6 +42,25 @@
             <div class="advisor-container">
                 <div class="advisor-image">
                     <img src="<?= base_url('public/img/manager.png'); ?>" alt="Ray Donovan - Ihr persönlicher Berater" class="advisor-photo">
+                </div>
+                <div class="advisor-info">
+                    <h3><i class="fas fa-user-tie"></i> Persönlicher Berater für jeden Auftrag</h3>
+                    <p>Bei <?= WEBSITE_NAME ?> wird jedem Kunden ein persönlicher Berater zugewiesen, der Sie vom ersten Kontakt bis zur erfolgreichen Übergabe des Fahrzeugs begleitet. </p>
+                    
+                    <div class="iban-notice">
+                        <p>
+                            <strong>Sicherer Zahlungsverkehr:</strong> Jedem unserer Berater wird durch die <?= WEBSITE_NAME ?> eine persönliche IBAN zugewiesen.
+                            Bitte verwenden Sie für alle Zahlungen ausschließlich die IBAN und den Namen Ihres persönlichen Beraters.
+                            So stellen wir einen reibungslosen Ablauf sicher – zu Ihrer und unserer Sicherheit.
+                            Ihr persönlicher Berater begleitet Sie vom ersten Tag Ihres Auftrags bis zur persönlichen Fahrzeugübergabe und steht Ihnen jederzeit für Fragen zur Verfügung.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="advisor-container" style="margin-top: 2.5rem;">
+                <div class="advisor-image">
+                    <img src="<?= base_url('public/img/duka.png'); ?>" alt="Ray Donovan - Ihr persönlicher Berater" class="advisor-photo">
                 </div>
                 <div class="advisor-info">
                     <h3><i class="fas fa-user-tie"></i> Persönlicher Berater für jeden Auftrag</h3>
@@ -446,6 +465,20 @@
                     <p>Ja, wir bieten maßgeschneiderte Transportlösungen für verschiedene Anforderungen, inklusive spezieller Lieferungen mit behördlichen Genehmigungen. Kontaktieren Sie uns für eine individuelle Beratung zu Ihren Transportbedürfnissen.</p>
                 </div>
             </div>
+
+            <div class="faq-item fade-in-up delay-1">
+                <div class="faq-question">Bieten Sie spezielle Transportdienstleistungen an?</div>
+                <div class="faq-answer">
+                    <p>Ja, wir bieten maßgeschneiderte Transportlösungen für verschiedene Anforderungen, inklusive spezieller Lieferungen mit behördlichen Genehmigungen. Kontaktieren Sie uns für eine individuelle Beratung zu Ihren Transportbedürfnissen.</p>
+                </div>
+            </div>
+
+            <div class="faq-item fade-in-up delay-1">
+                <div class="faq-question">Bieten Sie spezielle Transportdienstleistungen an?</div>
+                <div class="faq-answer">
+                    <p>Ja, wir bieten maßgeschneiderte Transportlösungen für verschiedene Anforderungen, inklusive spezieller Lieferungen mit behördlichen Genehmigungen. Kontaktieren Sie uns für eine individuelle Beratung zu Ihren Transportbedürfnissen.</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -455,7 +488,10 @@
     <div class="container">
         <h2 class="fade-in-up">Starten Sie Ihren sicheren Autokauf</h2>
         <p class="fade-in-up delay-1">Vereinbaren Sie ein unverbindliches Beratungsgespräch mit unserem Expertenteam. Wir zeigen Ihnen, wie Sie von unseren professionellen Services profitieren - inklusive 14-tägiger Testphase mit kostenloser Rückgabe.</p>
-        <a href="mailto:<?= WEBSITE_EMAIL ?>" class="cta-btn fade-in-up delay-2">Jetzt Termin vereinbaren</a>
+        <div class="cta-buttons">
+            <a href="mailto:<?= WEBSITE_EMAIL ?>" class="cta-btn fade-in-up delay-2">Jetzt Termin vereinbaren</a>
+            <a href="tel:<?= WEBSITE_PHONE ?>" class="cta-btn fade-in-up delay-2"><?= WEBSITE_PHONE ?></a>
+        </div>
     </div>
 </section>
 
